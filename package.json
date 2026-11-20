@@ -1,0 +1,25 @@
+{
+  "name": "baduk-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Dockerized Baduk web app deployed to AWS with CDK.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch --env-file=.env src/server.js",
+    "test": "node --test tests/server.test.js",
+    "cdk:synth": "cdk synth",
+    "cdk:deploy": "cdk deploy --all --require-approval never"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.1029.0",
+    "aws-cdk-lib": "^2.222.0",
+    "constructs": "^10.4.2"
+  }
+}

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# AWS CDK output
+cdk.out/
+
+# Logs and coverage
+npm-debug.log*
+coverage/
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
