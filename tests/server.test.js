@@ -32,10 +32,28 @@ test('health endpoint returns an OK status', async () => {
   assert.deepEqual(await response.json(), { status: 'ok' });
 });
 
-test('serves the Baduk homepage', async () => {
+test('serves the Go homepage and its assets', async () => {
   const baseUrl = await startServer();
-  const response = await fetch(baseUrl);
+  const [home, stylesheet, illustration] = await Promise.all([
+    fetch(baseUrl),
+    fetch(`${baseUrl}/gosite_basic.css`),
+    fetch(`${baseUrl}/illustrations/tutorial.png`),
+  ]);
 
-  assert.equal(response.status, 200);
-  assert.match(await response.text(), /<h1>Baduk<\/h1>/);
+  assert.equal(home.status, 200);
+  assert.match(await home.text(), /Think beyond/);
+  assert.equal(stylesheet.status, 200);
+  assert.equal(illustration.status, 200);
+});
+
+test('serves the Go demo page and generated browser bundle', async () => {
+  const baseUrl = await startServer();
+  const [demo, bundle] = await Promise.all([
+    fetch(`${baseUrl}/demo/`),
+    fetch(`${baseUrl}/demo/demo.bundle.js`),
+  ]);
+
+  assert.equal(demo.status, 200);
+  assert.match(await demo.text(), /Demo Board/);
+  assert.equal(bundle.status, 200);
 });

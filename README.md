@@ -14,20 +14,28 @@ npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The `/healthz` endpoint is
-used by the load balancer and can be checked at
+The development command builds the Go demo bundle automatically. Open
+[http://localhost:3000](http://localhost:3000) to view the site, or
+[http://localhost:3000/demo/](http://localhost:3000/demo/) to open the board.
+The `/healthz` endpoint is used by the load balancer and can be checked at
 [http://localhost:3000/healthz](http://localhost:3000/healthz).
 
 Copy `.env.example` to `.env` for local settings. `.env` is intentionally
 ignored by Git; do not put secrets in source control. Dependencies,
-`node_modules/`, and `cdk.out/` are generated locally and are also ignored.
+`node_modules/`, the generated `public/demo/demo.bundle.js`, and `cdk.out/` are
+generated locally and are also ignored.
 
 ## Run in Docker
 
 ```sh
+npm run build:demo
 docker build -t baduk-web .
 docker run --rm -p 3000:3000 baduk-web
 ```
+
+The checked-in demo source is `public/demo/demo.js`; the build command bundles
+it for browser use. Run the command again after changing the demo source. The
+development, test, and CDK deploy commands build the bundle automatically.
 
 ## Deploy to AWS
 
@@ -79,7 +87,7 @@ npx cdk destroy
 
 ## Project layout
 
-- `public/` — static game frontend files
+- `public/` — website HTML, CSS, illustrations, and Go demo
 - `src/` — Node.js server and future API/WebSocket handlers
 - `infra/` — AWS CDK application and stack
 - `.github/workflows/` — CI/CD workflow

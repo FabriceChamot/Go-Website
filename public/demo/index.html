@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101310">
+  <meta name="description" content="Play a game of Go on a 19×19 demo board.">
+  <title>Demo Board — GO</title>
+  <link rel="stylesheet" href="../gosite_basic.css">
+  <link rel="stylesheet" href="demo.css">
+  <script src="demo.bundle.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Go home">
+      <span class="brand-stone" aria-hidden="true"></span>
+      <span>GO<span class="brand-period">.</span></span>
+    </a>
+    <a class="back-link" href="../index.html">← Back to home</a>
+  </header>
+
+  <main class="demo-main">
+    <section class="demo-heading" aria-labelledby="demo-title">
+      <h1 id="demo-title">Demo Board</h1>
+      <p>Play both sides on a 19×19 board. Click an intersection to place a stone.</p>
+    </section>
+
+    <section class="game-layout" aria-label="Go demo game">
+      <div class="board-frame">
+        <div class="tenuki-board tenuki-board-flat" id="go-board"></div>
+      </div>
+      <aside class="game-controls">
+        <p class="turn-label">Current turn</p>
+        <p class="game-status" id="game-status" aria-live="polite">Black to play</p>
+        <p class="move-count" id="move-count">0 moves</p>
+        <div class="button-row">
+          <button type="button" id="pass-button">Pass turn</button>
+          <button type="button" id="undo-button" class="secondary-button" disabled>Undo</button>
+        </div>
+        <button type="button" id="new-game-button" class="text-button">Start a new game</button>
+        <p class="game-note">Two consecutive passes end the game. The board enforces legal moves and captures.</p>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

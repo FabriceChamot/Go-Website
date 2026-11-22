@@ -1,15 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A web-based Baduk game.">
-    <title>Baduk</title>
-  </head>
-  <body>
-    <main>
-      <h1>Baduk</h1>
-      <p>Your game starter is ready. Add your game's frontend files to this folder.</p>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101310">
+  <meta name="description" content="Discover the game of Go: learn the basics, explore strategy, and find your next game.">
+  <title>Go — A game of possibility</title>
+  <link rel="stylesheet" href="gosite_basic.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Go home">
+      <span class="brand-stone" aria-hidden="true"></span>
+      <span>GO<span class="brand-period">.</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#learn">Tutorial</a>
+      <a href="demo/">Demo Board</a>
+      <a href="#invite">Invite a friend</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">An ancient game. An endless journey.</p>
+      <h1 id="hero-title">Think beyond<br><span>the next move.</span></h1>
+      <p class="hero-copy">Go is a simple game of stones and space — and a lifetime of discovery.</p>
+    </section>
+
+    <section class="explore" id="explore" aria-label="Explore Go">
+      <a class="panel panel-learn" href="#learn">
+        <span class="panel-number">Learn the game</span>
+        <img class="panel-art" src="illustrations/tutorial.png" alt="" aria-hidden="true">
+        <span class="panel-content">
+          <span class="panel-title">Tutorial</span>
+          <span class="panel-description">A few rules open up a whole new world.</span>
+        </span>
+        <span class="panel-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="panel panel-strategy" href="demo/">
+        <span class="panel-number">Try it out</span>
+        <img class="panel-art" src="illustrations/lee vs alphago.png" alt="" aria-hidden="true">
+        <span class="panel-content">
+          <span class="panel-title">Demo Board</span>
+          <span class="panel-description">Build, adapt, and see the bigger picture.</span>
+        </span>
+        <span class="panel-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="panel panel-play" href="#invite">
+        <span class="panel-number">Play online</span>
+        <img class="panel-art" src="illustrations/hand_playing2.png" alt="" aria-hidden="true">
+        <span class="panel-content">
+          <span class="panel-title">Invite a friend</span>
+          <span class="panel-description">Every game is a chance to discover something.</span>
+        </span>
+        <span class="panel-arrow" aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <section class="details" aria-label="About Go">
+      <article id="learn">
+        <p class="eyebrow">01 — The beginning</p>
+        <h2>Easy to learn.<br>Impossible to exhaust.</h2>
+        <p>Two players take turns placing black and white stones on a grid. The aim is to surround more territory than your opponent. That’s the starting point — the rest is up to you.</p>
+      </article>
+      <article id="demo">
+        <p class="eyebrow">02 — Try it out</p>
+        <h2>Put a stone on the board.</h2>
+        <p>Explore the game hands-on: play both sides, practice legal moves, and see how stones capture one another. <a href="demo/">Open the demo board.</a></p>
+      </article>
+      <article id="invite">
+        <p class="eyebrow">03 — Your next move</p>
+        <h2>Invite a friend</h2>
+        <p>Play with a friend, find a local club, or start exploring online. The best way to understand Go is to put a stone on the board.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#home"><span class="brand-stone" aria-hidden="true"></span><span>GO<span class="brand-period">.</span></span></a>
+    <p>A game of possibility.</p>
+  </footer>
+</body>
 </html>

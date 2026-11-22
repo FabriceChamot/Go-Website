@@ -6,10 +6,15 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
+    "prestart": "npm run build:demo",
     "dev": "node --watch --env-file=.env src/server.js",
+    "predev": "npm run build:demo",
     "test": "node --test tests/server.test.js",
+    "pretest": "npm run build:demo",
+    "build:demo": "esbuild public/demo/demo.js --bundle --platform=browser --outfile=public/demo/demo.bundle.js",
     "cdk:synth": "cdk synth",
-    "cdk:deploy": "cdk deploy --all --require-approval never"
+    "cdk:deploy": "cdk deploy --all --require-approval never",
+    "precdk:deploy": "npm run build:demo"
   },
   "engines": {
     "node": ">=22"
@@ -20,6 +25,8 @@
   "devDependencies": {
     "aws-cdk": "^2.1029.0",
     "aws-cdk-lib": "^2.222.0",
-    "constructs": "^10.4.2"
+    "constructs": "^10.4.2",
+    "esbuild": "^0.25.0",
+    "tenuki": "^0.3.1"
   }
 }

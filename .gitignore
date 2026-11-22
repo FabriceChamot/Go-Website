@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+public/demo/demo.bundle.js
 
 # Local environment variables and secrets
 .env
