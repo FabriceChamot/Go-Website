@@ -8,7 +8,7 @@
     "start": "node src/server.js",
     "dev": "node --watch --env-file-if-exists=.env src/server.js",
     "predev": "npm run build:demo",
-    "test": "node --test tests/server.test.js",
+    "test": "node --test tests/server.test.js tests/infra.test.js",
     "pretest": "npm run build:demo",
     "build:demo": "esbuild public/demo/demo.js --bundle --platform=browser --outfile=public/demo/demo.bundle.js",
     "cdk:synth": "cdk synth",

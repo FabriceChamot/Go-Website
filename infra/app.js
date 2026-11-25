@@ -4,4 +4,9 @@ const cdk = require('aws-cdk-lib');
 const { BadukWebStack } = require('./baduk-web-stack');
 
 const app = new cdk.App();
-new BadukWebStack(app, 'BadukWebStack');
+new BadukWebStack(app, 'BadukWebStack', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: 'eu-central-1',
+  },
+});

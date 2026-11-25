@@ -9,6 +9,10 @@ public/demo/demo.bundle.js
 
 # AWS CDK output
 cdk.out/
+cdk.context.json
+
+# Local deployment notes
+README.private.md
 
 # Logs and coverage
 npm-debug.log*
