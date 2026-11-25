@@ -34,7 +34,11 @@ jobs:
 
   deploy:
     name: Deploy to AWS
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      vars.AWS_ROLE_ARN != '' &&
+      vars.AWS_REGION != ''
     needs: validate
     runs-on: ubuntu-latest
     permissions:

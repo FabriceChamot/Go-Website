@@ -1,13 +1,16 @@
 # Baduk Web
 
-A JavaScript starter for a Baduk (Go) website. It serves static files from
-`public/`, runs in Docker, and uses AWS CDK to deploy a container to ECS Fargate
-behind an Application Load Balancer. The load balancer supports WebSocket
-upgrades; add the application-side WebSocket handler when the game needs it.
+A portfolio project introducing the game of Go (Baduk). It includes an
+informational website and a browser-based board demo. Express serves the static
+site, and AWS CDK deploys it as a container to ECS Fargate behind an
+Application Load Balancer.
+
+The demo is for single-player, two-sided practice. The project does not currently have
+online multiplayer, user accounts, saved games, or a backend game API.
 
 ## Run locally
 
-Requirements: Node.js 22 or newer and npm.
+Requirements: Node.js 22.9 or newer and npm.
 
 ```sh
 npm ci
@@ -37,7 +40,7 @@ The checked-in demo source is `public/demo/demo.js`; the build command bundles
 it for browser use. Run the command again after changing the demo source. The
 development, test, and CDK deploy commands build the bundle automatically.
 
-## Deploy to AWS
+## Deploy to AWS manually
 
 The CDK stack creates an ECS cluster, a Fargate service, and a public
 Application Load Balancer. CDK builds the Docker image and publishes it to the
@@ -51,39 +54,58 @@ AWS resources incur charges, including the load balancer and running Fargate
 task. Review current AWS pricing and delete the stack when it is no longer
 needed.
 
-### One-time AWS setup
+### One-time setup
 
-1. Install and configure the AWS CLI and AWS CDK, and make sure your AWS
-   credentials are for the account and region you intend to use.
-2. Bootstrap CDK once in that account and region:
+1. Install the AWS CLI and Docker Desktop. Start Docker Desktop before
+   deploying.
+2. Configure AWS CLI credentials for the account and region where you intend
+   to deploy. Verify the account before continuing:
+
+   ```sh
+   aws sts get-caller-identity
+   ```
+
+3. Install dependencies and run the tests:
+
+   ```sh
+   npm ci
+   npm test
+   ```
+
+4. Bootstrap CDK once in that account and region:
 
    ```sh
    npx cdk bootstrap aws://ACCOUNT_ID/REGION
    ```
 
-3. Create an IAM role for GitHub Actions using the
-   `token.actions.githubusercontent.com` OIDC provider. Its trust policy should
-   require audience `sts.amazonaws.com` and restrict the subject to
-   `repo:OWNER/REPOSITORY:ref:refs/heads/main` (replace the placeholders).
-   Grant the role permission to assume the CDK bootstrap deployment and asset
-   publishing roles in this account. Do not use long-lived AWS access keys in
-   GitHub.
-4. In the GitHub repository, add Actions **variables** named `AWS_ROLE_ARN`
-   and `AWS_REGION`. Set them to the deployment role ARN and AWS region.
-5. Push to `main`. Pull requests run tests and CDK synthesis; pushes to `main`
-   also deploy the stack. The deployment output includes the website URL.
+5. Synthesize and deploy the stack:
 
-For a local deployment after bootstrapping, run:
+   ```sh
+   npm run cdk:synth
+   npm run cdk:deploy
+   ```
 
-```sh
-npm run cdk:deploy
-```
+   The deployment output includes the website URL.
+
+### Optional: deploy from GitHub Actions
+
+The included workflow validates pull requests and can deploy when code is
+pushed to `main`. To enable deployment, configure GitHub OIDC with an IAM role
+whose trust policy restricts access to your repository and `main` branch.
+Grant it the permissions required to deploy the CDK stack, then add repository
+Actions variables named `AWS_ROLE_ARN` and `AWS_REGION`. Do not store long-lived
+AWS access keys in GitHub. GitHub Actions setup is not required for local
+deployment.
 
 To remove the stack and its resources:
 
 ```sh
 npx cdk destroy
 ```
+
+This removes the website stack, but CDK bootstrap resources are separate and
+remain in the account. Review AWS resources and charges after destroying the
+stack.
 
 ## Project layout
 

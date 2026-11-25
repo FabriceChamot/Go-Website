@@ -6,8 +6,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "prestart": "npm run build:demo",
-    "dev": "node --watch --env-file=.env src/server.js",
+    "dev": "node --watch --env-file-if-exists=.env src/server.js",
     "predev": "npm run build:demo",
     "test": "node --test tests/server.test.js",
     "pretest": "npm run build:demo",
@@ -17,7 +16,7 @@
     "precdk:deploy": "npm run build:demo"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.9"
   },
   "dependencies": {
     "express": "^5.1.0"
